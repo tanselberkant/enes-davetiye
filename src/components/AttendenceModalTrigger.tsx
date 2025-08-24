@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import RsvpModal from "@/components/RsvpModal";
+import AttendenceModal from "@/components/AttendenceModal";
 
 export default function RsvpTrigger() {
   const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function RsvpTrigger() {
         </svg>
         Katılım Durumunu Bildir
       </button>
-      <RsvpModal open={open} onClose={() => setOpen(false)} />
+      <AttendenceModal open={open} onClose={() => setOpen(false)} />
     </>
   );
 }

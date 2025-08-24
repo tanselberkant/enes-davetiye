@@ -3,7 +3,7 @@ import Banner from "@/components/Banner";
 import EventCard from "@/components/EventCard";
 import FooterNote from "@/components/FooterNote";
 import PhotoUpload from "@/components/PhotoUpload";
-import RsvpTrigger from "@/components/RsvpTrigger";
+import AttendenceModalTrigger from "@/components/AttendenceModalTrigger";
 import { SITE_DATA } from "@/constants";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
         </div>
       </section>
       <div className="flex items-center justify-center">
-        <RsvpTrigger />
+        <AttendenceModalTrigger />
       </div>
       <AccommodationList groups={SITE_DATA.accommodations} />
       <PhotoUpload />

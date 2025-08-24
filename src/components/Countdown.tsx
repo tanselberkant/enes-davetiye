@@ -24,18 +24,28 @@ function calculateTimeLeft(target: Date): TimeLeft {
 }
 
 export default function Countdown({ label, targetISO }: Props) {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
-    calculateTimeLeft(new Date(targetISO))
-  );
+  const [mounted, setMounted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    // Set immediately on mount to avoid a visible 1s "00" flash
+    setTimeLeft(calculateTimeLeft(new Date(targetISO)));
     const id = setInterval(() => {
       setTimeLeft(calculateTimeLeft(new Date(targetISO)));
     }, 1000);
     return () => clearInterval(id);
-  }, [targetISO]);
+  }, [mounted, targetISO]);
 
-  // background: rgba(0, 0, 0, 0.6);
   const itemClass =
     "flex flex-col items-center justify-center bg-[rgba(0,0,0,0.6)] text-white rounded-md min-w-20 min-h-[92px] ";
   const numberClass = "text-[32px] font-semibold";

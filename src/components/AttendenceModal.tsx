@@ -15,6 +15,8 @@ export default function RsvpModal({ open, onClose }: Props) {
   const [errors, setErrors] = useState<{ name?: string; attendance?: string }>(
     {}
   );
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const options = getRsvpOptions();
 
@@ -32,15 +34,41 @@ export default function RsvpModal({ open, onClose }: Props) {
     onClose();
   };
 
-  const submit = (evt: React.FormEvent) => {
+  const submit = async (evt: React.FormEvent) => {
     evt.preventDefault();
     const nextErrors: { name?: string; attendance?: string } = {};
     if (!name.trim()) nextErrors.name = "Lütfen ad soyad giriniz.";
     if (!attendance) nextErrors.attendance = "Lütfen bir seçenek seçiniz.";
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
-    // Placeholder: integrate with backend or email later
-    handleClose();
+    try {
+      setSubmitting(true);
+      const res = await fetch("/api/attendence", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          attendance,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const apiErrors: { name?: string; attendance?: string } = {};
+        if (data?.field && data?.message) {
+          apiErrors[data.field as "name" | "attendance"] = data.message;
+        }
+        setErrors(apiErrors);
+        return;
+      }
+      setSubmitted(true);
+      setTimeout(() => {
+        handleClose();
+        setSubmitted(false);
+      }, 1200);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -117,12 +145,17 @@ export default function RsvpModal({ open, onClose }: Props) {
               </div>
             )}
 
-            <div className="flex items-center gap-3">
+            <div className="flex justify-end mt-3">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center rounded-full bg-black text-white h-11 px-6 text-sm shadow hover:opacity-90"
+                disabled={submitting}
+                className="inline-flex items-center justify-center rounded-full bg-black text-white h-11 px-6 text-sm shadow hover:opacity-90 disabled:opacity-60"
               >
-                Gönder
+                {submitting
+                  ? "Gönderiliyor..."
+                  : submitted
+                  ? "Teşekkürler!"
+                  : "Gönder"}
               </button>
             </div>
           </form>
