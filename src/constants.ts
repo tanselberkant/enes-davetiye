@@ -19,7 +19,8 @@ export const SITE_DATA: SiteData = {
     venue: "Havuz Cafe",
     address: "Şirintepe Mh. 86. Sk. No:29\nBiga/ÇANAKKALE",
     title: "Biga",
-    mapUrl: "https://maps.google.com",
+    mapUrl:
+      "https://www.google.com/search?q=%C3%A7anakkale+biga+havuz+cafe&rlz=1C5CHFA_enTR1151TR1151&oq=%C3%A7anakkale+biga+havuz+cafe&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABjvBTIHCAIQABjvBTIHCAMQABjvBTIHCAQQABjvBdIBCDQ0NTBqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8#:~:text=400%E2%80%A7Cafe-,Directions,-Reviews",
     contact: { phone: "+90 553 427 79 85", tel: "+905534277985" },
   },
   rightEvent: {
@@ -30,7 +31,8 @@ export const SITE_DATA: SiteData = {
     venue: "Odessa",
     address: "Bahçelievler Mh. Küme 1. No:49\nMerkez/TOKAT",
     title: "Tokat",
-    mapUrl: "https://maps.google.com",
+    mapUrl:
+      "https://www.google.com/search?q=odessa+d%C3%BC%C4%9F%C3%BCn+salonu&rlz=1C5CHFA_enTR1151TR1151&oq=odessa+d%C3%BC%C4%9Fn&gs_lcrp=EgZjaHJvbWUqCAgBEAAYDRgeMgYIABBFGDkyCAgBEAAYDRgeMggIAhAAGA0YHjIICAMQABgNGB4yBwgEEAAY7wUyBwgFEAAY7wUyCggGEAAYgAQYogQyBwgHEAAY7wUyBwgIEAAY7wXSAQg3MDI2ajBqMagCALACAA&sourceid=chrome&ie=UTF-8#:~:text=venue%20in%20Turkey-,Directions,-Reviews",
     contact: { phone: "+90 539 516 89 87", tel: "+905395168987" },
   },
   accommodations: [
@@ -84,7 +86,8 @@ export const SITE_DATA: SiteData = {
       ],
     },
   ],
-  photoUploadLink: "https://drive.google.com",
+  photoUploadLink:
+    "https://drive.google.com/drive/folders/109q2UDujwEygGQMICQeso_9gmhPwdY8p",
 };
 
 export type RsvpOption = { value: string; label: string };
