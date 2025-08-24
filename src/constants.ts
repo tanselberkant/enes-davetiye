@@ -8,7 +8,7 @@ export const SITE_DATA: SiteData = {
     targetISO: "2025-08-30T20:00:00+03:00",
   },
   bottomCountdown: {
-    label: "6 EYLÜL 2025 - Düğün",
+    label: "6 EYLÜL 2025 - Odessa",
     targetISO: "2025-09-06T20:00:00+03:00",
   },
   leftEvent: {
